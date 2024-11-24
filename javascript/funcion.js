@@ -5,6 +5,7 @@ let primerResultado = null;
 let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
+let faltantes = 8;
 let temporizador = false;
 let timer = 50;
 let timerInicial =50;
@@ -21,6 +22,7 @@ let wrongAudio = new Audio('./sounds/wrong.wav');
 let mostrarMovimientos = document.getElementById("movimientos");
 let mostrarAciertos = document.getElementById("aciertos");
 let mostrarTiempo = document.getElementById("t-restante");
+let mostrarFaltantes = document.getElementById("faltantes");
 
 
 
@@ -82,11 +84,14 @@ function destapar(id){
             tarjetasDestapadas =0;
 
             aciertos++;
+            faltantes --;
             mostrarAciertos.innerHTML = `Aciertos: ${aciertos}`;
+            mostrarFaltantes.innerHTML =`Faltantes: ${faltantes}`;
 
             if(aciertos == 8){
                 clearInterval(tiempoRegresivoId);
-                mostrarAciertos.innerHTML = `Aciertos: ${aciertos}`;
+                mostrarAciertos.innerHTML = `Parejas Completadas: ${aciertos}`;
+                mostrarFaltantes.innerHTML = `Parejas Restantes: ${faltantes}`;
                 mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
                 mostrarTiempo.innerHTML = `Fantastico: ${timerInicial-timer} segundos`;
                 winAudio.play();
